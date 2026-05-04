@@ -169,10 +169,8 @@ def _find_column_index(header_values: list, requested_name: str | None, candidat
         if n and n not in norm_to_index:
             norm_to_index[n] = i
 
-    def match(name: str) -> int | None:
-        n = _normalize_header(name)
-        if not n:
-            return None
+    if requested_name:
+        n = _normalize_header(requested_name)
         if n in norm_to_index:
             return norm_to_index[n]
         for i, v in indexed:
@@ -180,15 +178,20 @@ def _find_column_index(header_values: list, requested_name: str | None, candidat
                 return i
         return None
 
-    if requested_name:
-        found = match(requested_name)
-        if found:
-            return found
-
+    # First pass: exact matches for all candidates
     for c in candidates:
-        found = match(c)
-        if found:
-            return found
+        n = _normalize_header(c)
+        if n and n in norm_to_index:
+            return norm_to_index[n]
+
+    # Second pass: substring matches for all candidates
+    for c in candidates:
+        n = _normalize_header(c)
+        if not n:
+            continue
+        for i, v in indexed:
+            if n in _normalize_header(v) or _normalize_header(v) in n:
+                return i
 
     return None
 
