@@ -4,19 +4,21 @@ This script automates the process of testing a web frontend by reading test inpu
 
 ## Prerequisites
 
-Before running the script, you need to have Python installed along with a few dependencies.
+Before running the script, you need to have Python installed along with a few dependencies. Open your terminal and run the following commands:
 
-1. **Install required Python packages:**
-   ```powershell
-   pip install openpyxl playwright
-   ```
-
-2. **Install Playwright browsers:**
-   ```powershell
-   playwright install chromium
-   ```
+```powershell
+pip install -U pip
+pip install playwright openpyxl
+playwright install
+```
 
 ## Basic Usage
+
+**Important:** You should navigate into the `test_automation` folder before running the script so it can automatically find the default Excel file.
+
+```powershell
+cd test_automation
+```
 
 To run the script with the default settings (it will automatically look for `Assignment 1 - Test cases.xlsx` in the current folder):
 
