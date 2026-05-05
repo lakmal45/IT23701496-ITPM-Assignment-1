@@ -20,16 +20,10 @@ playwright install
 cd test_automation
 ```
 
-To run the script with the default settings (it will automatically look for `Assignment 1 - Test cases.xlsx` in the current folder):
+To run the script specific parameters, such as pointing to the xlsx file and the deployed URL:
 
 ```powershell
-python test_automation.py
-```
-
-To run with specific parameters, such as pointing to a custom file or a deployed URL:
-
-```powershell
-python test_automation.py --excel "Assignment 1 - Test cases.xlsx" --url "https://www.pixelssuite.com/chat-translator"
+python test_automation.py --excel "IT23701496.xlsx" --url "https://www.pixelssuite.com/chat-translator"
 ```
 
 ## Useful Command-Line Arguments
